@@ -1,5 +1,5 @@
-NEMenu.CreateMenu('nemenu:Example', 'Example Menu', '~g~Example menu', 'ne_examplemenu', 'header')
-NEMenu.CreateSubMenu('nemenu:ButtonSubMenu', 'nemenu:Example', '~g~Example sub menu')
+NEMenu.CreateMenu('ne_examplemenu:Example', 'Example Menu', '~g~Example menu', 'ne_examplemenu', 'header')
+NEMenu.CreateSubMenu('ne_examplemenu:ButtonSubMenu', 'ne_examplemenu:Example', '~g~Example sub menu')
 
 local isMenuOpen = false
 
@@ -25,8 +25,8 @@ local _inputText = nil
 
 local _altSprite = false
 
-AddEventHandler('nemenu:closeMenu', function(menu)
-	if menu == 'nemenu:Example' then
+AddEventHandler('ne_libs:closeMenu', function(menu)
+	if menu == 'ne_examplemenu:Example' then
 		isMenuOpen = false
 	end
 end)
@@ -34,10 +34,10 @@ end)
 Citizen.CreateThread(function()
     NE.UI.KeysRegister('F4', 'example_menu', 'Open the example menu', function()
 		isMenuOpen = true
-		NEMenu.OpenMenu('nemenu:Example')
+		NEMenu.OpenMenu('ne_examplemenu:Example')
 
 		while isMenuOpen do
-			if NEMenu.Begin('nemenu:Example') then
+			if NEMenu.Begin('ne_examplemenu:Example') then
 				NEMenu.Separator('~b~Button')
 				NEMenu.Button('Normale button')
 				NEMenu.Button('Button with subText', '~g~subText')
@@ -47,10 +47,10 @@ Citizen.CreateThread(function()
 	
 				NEMenu.Separator()
 				NEMenu.Separator('~b~MenuButton')
-				NEMenu.MenuButton('Normale MenuButton', 'nemenu:ButtonSubMenu')
-				NEMenu.MenuButton('MenuButton with subText', 'nemenu:ButtonSubMenu', '~g~subText')
-				NEMenu.MenuButton('MenuButton with emoji subText', 'nemenu:ButtonSubMenu', nil, '👋')
-				NEMenu.MenuButton('Normale MenuButton center', 'nemenu:ButtonSubMenu', nil, nil, true)
+				NEMenu.MenuButton('Normale MenuButton', 'ne_examplemenu:ButtonSubMenu')
+				NEMenu.MenuButton('MenuButton with subText', 'ne_examplemenu:ButtonSubMenu', '~g~subText')
+				NEMenu.MenuButton('MenuButton with emoji subText', 'ne_examplemenu:ButtonSubMenu', nil, '👋')
+				NEMenu.MenuButton('Normale MenuButton center', 'ne_examplemenu:ButtonSubMenu', nil, nil, true)
 	
 				NEMenu.Separator()
 				NEMenu.Separator('~b~ExtraButton')
@@ -121,7 +121,7 @@ Citizen.CreateThread(function()
 					end
 				end
 				
-				if NEMenu.Button('~r~Close Menu') then -- You don't need a button to close the menu if the menu is not open in "locked" mode. "Example: NEMenu.OpenMenu("nemenu:Example") or NEMenu.OpenMenu("nemenu:Example", true)"
+				if NEMenu.Button('~r~Close Menu') then -- You don't need a button to close the menu if the menu is not open in "locked" mode. "Example: NEMenu.OpenMenu("ne_examplemenu:Example") or NEMenu.OpenMenu("ne_examplemenu:Example", true)"
 					NEMenu.CloseMenu()
 				end
 				if NEMenu.IsItemHovered() then
@@ -129,8 +129,8 @@ Citizen.CreateThread(function()
 				end
 	
 				NEMenu.End() -- This function is required to operate your menu.
-			elseif NEMenu.Begin('nemenu:ButtonSubMenu') then
-				NEMenu.MenuButton('Go back', 'nemenu:Example', nil, '➡️')
+			elseif NEMenu.Begin('ne_examplemenu:ButtonSubMenu') then
+				NEMenu.MenuButton('Go back', 'ne_examplemenu:Example', nil, '➡️')
 	
 				NEMenu.End() -- This function is required to operate your menu.
 			end
